@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>#4471 · two date causes · support kb</title>
+<style>
+:root { color-scheme: light dark; --bg:#fbfaf7; --fg:#1d1d1b; --muted:#6b6a66; --line:#e3e0d8; --accent:#2f6f5e; --warn:#b4501f; --warn-bg:#fbeee6; }
+@media(prefers-color-scheme:dark) { :root {--bg:#171716;--fg:#ecebe6;--muted:#9c9a93;--line:#34332f;--accent:#6fbfa6;--warn:#f0905d;--warn-bg:#3a2418;} }
+body {margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,sans-serif}
+main {max-width:760px;margin:0 auto;padding:2rem 16px 4rem}
+a {color:var(--accent)} .crumb {font:.8rem ui-monospace,monospace;text-decoration:none;color:var(--muted)}
+h1 {margin:.25rem 0 .5rem;line-height:1.2} .meta {display:flex;gap:1rem;flex-wrap:wrap;color:var(--muted);font-size:.85rem}
+.status {border:1px solid var(--line);border-radius:99px;padding:0 .6rem}
+table {border-collapse:collapse;width:100%;margin:1rem 0;font-size:.92rem}
+th,td {border-bottom:1px solid var(--line);padding:.35rem .5rem;text-align:left;vertical-align:top}
+code {font-family:ui-monospace,monospace;font-size:.88em} .tags {color:var(--muted);font-size:.85em}
+.note {color:var(--muted);font-size:.85em} .wrong td {background:var(--warn-bg)} .wrong td:last-child {color:var(--warn);font-weight:600}
+footer {margin-top:3rem;color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);padding-top:1rem}
+</style>
+</head>
+<body><main>
+<a class="crumb" href="/kb">support desk · kb</a>
+<header><h1>#4471 · two date causes</h1><p class="meta"><span>owner <b>HLachecki</b></span><span class="status">known</span><span>reviewed 2026-11-17</span></p></header>
+<p>Ticket #4471 contains 412 unique reports, not one cause. The export has 427 rows because its pages overlap; counts below deduplicate by report ID.</p>
+<h2>What the reports show</h2>
+<p><strong>412</strong> reports merged into #4471 · <strong>2</strong> causes</p>
+<table><thead><tr><th>cause</th><th>reports</th><th>tagged as</th><th>tenants</th><th>seen</th><th></th></tr></thead><tbody><tr class=""><td><code>parser</code></td><td>379</td><td>parser ×356 · hint ×23</td><td>11</td><td>2026-04-01 → 2026-10-04</td><td>#4471</td></tr>
+<tr class="wrong"><td><code>hint</code></td><td>33</td><td>hint ×18 · parser ×15</td><td>3</td><td>2026-04-17 → 2026-09-22</td><td>not this ticket — no ticket of its own</td></tr></tbody></table>
+<p class="note">5 reports read as a one-day move; filed under <code>parser</code> by tenant.</p>
+<h2>Parser: dates are read month-first</h2>
+<p>The parser cause covers 379 reports across 11 tenants. Their locale configuration writes the day first, but the shared parser reads the month first, so dates can flip. This is the cause represented by support ticket #4471.</p>
+<h2>booking-v3: the date hint is month-first</h2>
+<p>The hint cause covers 33 reports from booking-v3 form submissions across three tenants. Those tenants use day-first locales, but booking-v3 shows <code>MM/DD/YYYY</code>; the form interprets the value in the tenant's day-first order, so this is a separate problem.</p>
+<h2>Intake tags</h2>
+<p><code>meta.intakeTag</code> is only an intake guess. It disagrees with the tenant-based cause in both groups: 23 parser reports were tagged <code>hint</code>, and 15 hint reports were tagged <code>parser</code>.</p>
+<h2>One-day moves</h2>
+<p>The five reports noted as one-day moves remain in the parser group. They are symptoms, not a third cause.</p>
+<h2>Tickets</h2>
+<ul><li><a href="https://github.com/HLachecki/mega-s01e03-what-it-shows/issues/1">Parser cause — 379 reports</a></li><li><a href="https://github.com/HLachecki/mega-s01e03-what-it-shows/issues/2">booking-v3 hint cause — 33 reports</a></li></ul>
+<p class="note">desk ref <b>DR-03HK-T0TF</b></p>
+<footer>Pages are written by people. Tables and charts are built from data at render time.</footer>
+</main></body></html>

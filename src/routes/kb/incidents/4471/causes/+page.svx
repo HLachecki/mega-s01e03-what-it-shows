@@ -1,0 +1,41 @@
+---
+layout: runbook
+title: '#4471 · two date causes'
+owner: HLachecki
+status: known
+reviewed: 2026-11-17
+signature: HLachecki
+---
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+Ticket #4471 contains 412 unique reports, not one cause. The export has 427 rows because its pages overlap; counts below deduplicate by report ID.
+
+## What the reports show
+
+<CauseTable ticket={4471} />
+
+## Parser: dates are read month-first
+
+The parser cause covers 379 reports across 11 tenants. Their locale configuration writes the day first, but the shared parser reads the month first, so dates can flip. This is the cause represented by support ticket #4471.
+
+## booking-v3: the date hint is month-first
+
+The hint cause covers 33 reports from booking-v3 form submissions across three tenants. Those tenants use day-first locales, but booking-v3 shows `MM/DD/YYYY`; the form interprets the value in the tenant's day-first order, so this is a separate problem.
+
+## Intake tags
+
+`meta.intakeTag` is only an intake guess. It disagrees with the tenant-based cause in both groups: 23 parser reports were tagged `hint`, and 15 hint reports were tagged `parser`.
+
+## One-day moves
+
+The five reports noted as one-day moves remain in the parser group. They are symptoms, not a third cause.
+
+## Tickets
+
+- [Parser cause — 379 reports](https://github.com/HLachecki/mega-s01e03-what-it-shows/issues/1)
+- [booking-v3 hint cause — 33 reports](https://github.com/HLachecki/mega-s01e03-what-it-shows/issues/2)
+
+<RenderStamp {signature} />
