@@ -4,7 +4,7 @@ title: '#4471 · two date causes'
 owner: HLachecki
 status: known
 reviewed: 2026-11-17
-signature: HLachecki
+signature: v1.eyJzdWIiOiIyNDQwNyIsImF1ZCI6ImNoYWxsZW5nZTp3aGF0LWl0LXNob3dzIiwiaWF0IjoxNzk0OTQxODAxLCJleHAiOjE3OTUwMjgyMDF9.wNUvAh_XF-A2pl7tRjQNLOg5qNCv4KsroM-213jfEuk
 ---
 <script>
   import CauseTable from '#lib/kb/CauseTable.svelte';
